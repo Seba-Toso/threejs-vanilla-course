@@ -33,6 +33,24 @@ renderer.setSize(
 document.body.appendChild(renderer.domElement)
 
 
+//////////////////////////////////////////////
+// Change renderer size and camera ratio by maintaining the perspective when screen is resized
+window.addEventListener('resize', () => {
+  const width = window.innerWidth
+  const height = window.innerHeight
+
+  //set the camera aspect ratio
+  camera.aspect = width / height
+  //updates the perspective
+  camera.updateProjectionMatrix()
+
+  //set the renderer size
+  renderer.setSize(
+    width,
+    height
+  )
+})
+
 
 //////////////////////////////////////////////
 // Adding a cube geometry
