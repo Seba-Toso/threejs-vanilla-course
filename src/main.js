@@ -22,12 +22,20 @@ const camera = new THREE.PerspectiveCamera(
   1000 //far: an object max distance from the camera needed to be rendered (helps to save performance)
 )
 
-const renderer = new THREE.WebGLRenderer()
+const renderer = new THREE.WebGLRenderer({
+  antialias: true
+})
 //set the renderer size to fit the device screen. this could be anything where I need to render.
 renderer.setSize(
   window.innerWidth,
   window.innerHeight
 )
+
+//////////////////////////////////////////////
+// Fix antialiasing issue (2 types of solution)
+const maxPixelRatio = Math.min(window.devicePixelRatio, 2)  //type 1: by changing the quantity of pixels that the renders render
+renderer.setPixelRatio(maxPixelRatio)
+//type 2: by changing configure antialias to true in the renderer instance (new THREE.WebGLRenderer({antialias: true}))
 
 //add the renderer elemment to the HTML document. This adds a canvas element
 document.body.appendChild(renderer.domElement)
