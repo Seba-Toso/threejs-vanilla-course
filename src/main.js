@@ -106,6 +106,13 @@ camera.position.z = 5;
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
+
+//////////////////////////////////////////////
+// Adding a clock in order to capture the elapsed time from a animation and the next one
+const clock = new THREE.Clock()
+let previousTime = 0
+
+
 //////////////////////////////////////////////
 // Rendering the scene
 function animate() {
@@ -120,9 +127,15 @@ function animate() {
   // cube3.rotation.order = 'ZXY'
   // cube3.rotation.reorder('YXZ')
 
-  cube.rotation.x += 0.01;
-  cube2.rotation.y += 0.01;
-  cube3.rotation.z += 0.01;
+  //Calcs the time between the last frame and the next one
+  const currentTime = clock.getElapsedTime()
+  const delta = currentTime - previousTime
+
+  previousTime = currentTime
+
+  cube.rotation.x += 0.01
+  cube2.rotation.y += delta * 0.1; //use the delta to animate a cube
+  cube3.rotation.z += THREE.MathUtils.degToRad(1);
 
 
   //////////////////////////////////////////////
