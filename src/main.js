@@ -114,6 +114,12 @@ function animate() {
 
   //////////////////////////////////////////////
   // Moving the cube with the camera fixed
+
+  //By default, rotation has an implementation order (X -> Y -> Z). It doesn't matter if they are wrote in different order.
+  //this can be change with the order or reorder property of rotation (always before changing the rotation)
+  // cube3.rotation.order = 'ZXY'
+  // cube3.rotation.reorder('YXZ')
+
   cube.rotation.x += 0.01;
   cube2.rotation.y += 0.01;
   cube3.rotation.z += 0.01;
