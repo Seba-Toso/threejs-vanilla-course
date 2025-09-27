@@ -3,13 +3,9 @@ import * as THREE from 'three'
 
 // addons such as controls, loaders, post-processing effects. No need to install separately but needs to be imported separately.
 // https://threejs.org/manual/#en/libraries-and-plugins
-// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-// const controls = new OrbitControls(camera, renderer.domElement);
 // const loader = new GLTFLoader();
-
-
 
 
 //////////////////////////////////////////////
@@ -41,14 +37,14 @@ document.body.appendChild(renderer.domElement)
 //////////////////////////////////////////////
 // Adding a cube geometry
 const geometry = new THREE.BoxGeometry(1, 1, 1); //A geometry that contains vertices and faces
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); //A material (in this case a color)
+const material = new THREE.MeshBasicMaterial({ color: 'red' }); //A material (in this case a color)
 const cube = new THREE.Mesh(geometry, material); //A mesh that takes the geometry and applies the material to it
 scene.add(cube);
 
 // by default, the camera and the elements added to a scene starts both at coordinates (0,0,0), that's why we have to move the camera or the elements.
 camera.position.z = 5;
 
-
+const controls = new OrbitControls(camera, renderer.domElement);
 
 //////////////////////////////////////////////
 // Rendering the scene
@@ -57,10 +53,18 @@ function animate() {
   // that the renderer is constantly being re-rendered but the cube is doing nothing. 
 
   //////////////////////////////////////////////
-  // Moving the cube
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  // Moving the cube with the camera fixed
+  // cube.rotation.x += 0.001;
+  // cube.rotation.y += 0.001;
 
+
+  //////////////////////////////////////////////
+  // Moving the camera instead of the cube
+  controls.enableDamping = true
+  controls.autoRotate = true
+  controls.update()
   renderer.render(scene, camera);
 }
+
+
 renderer.setAnimationLoop(animate); //As this needs to be constantly updating, setAnimationLoop function creates a loop that rerender the renderer
