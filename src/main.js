@@ -73,15 +73,33 @@ scene.add(axesHelper)
 const geometry = new THREE.BoxGeometry(1, 1, 1); //A geometry that contains vertices and faces
 const material = new THREE.MeshBasicMaterial({ color: 'red' }); //A material (in this case a color)
 const cube = new THREE.Mesh(geometry, material); //A mesh that takes the geometry and applies the material to it
-scene.add(cube);
+const cube2 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 'orange' })); //A mesh that takes the geometry and applies the material to it
+const cube3 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 'cyan' })); //A mesh that takes the geometry and applies the material to it
+
+const group = new THREE.Group()
+group.add(cube)
+group.add(cube2)
+group.add(cube3)
+
+scene.add(group);
 
 
 //////////////////////////////////////////////
 // Moving the cube through the axes and chaging its size with scale
 cube.position.x = 2;
 cube.position.y = 2;
-cube.scale.set(2, 1, 1.5); //This changes 3 vector size. It is also posible to change them individualy like the position
+cube.scale.set(1.5, 1.5, 1.5); //This changes 3 vector size. It is also posible to change them individualy like the position (default = 1,1,1)
 
+cube2.position.x = 0.5;
+cube2.position.y = 0.5;
+
+cube3.position.x = -0.5;
+cube3.position.y = -0.5;
+cube3.scale.set(0.5, 0.5, 0.5); //This changes 3 vector size. It is also posible to change them individualy like the position
+
+//By applying a modification to the group, all elements attached to it will suffer the modification according to the group in its relative way
+group.position.set(0.5, 0.5, 0)
+group.scale.set(1, 0.5, 1)
 
 // by default, the camera and the elements added to a scene starts both at coordinates (0,0,0), that's why we have to move the camera or the elements.
 camera.position.z = 5;
@@ -96,8 +114,9 @@ function animate() {
 
   //////////////////////////////////////////////
   // Moving the cube with the camera fixed
-  // cube.rotation.x += 0.001;
-  // cube.rotation.y += 0.001;
+  cube.rotation.x += 0.01;
+  cube2.rotation.y += 0.01;
+  cube3.rotation.z += 0.01;
 
 
   //////////////////////////////////////////////
