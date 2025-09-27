@@ -75,6 +75,14 @@ const material = new THREE.MeshBasicMaterial({ color: 'red' }); //A material (in
 const cube = new THREE.Mesh(geometry, material); //A mesh that takes the geometry and applies the material to it
 scene.add(cube);
 
+
+//////////////////////////////////////////////
+// Moving the cube through the axes and chaging its size with scale
+cube.position.x = 2;
+cube.position.y = 2;
+cube.scale.set(2, 1, 1.5); //This changes 3 vector size. It is also posible to change them individualy like the position
+
+
 // by default, the camera and the elements added to a scene starts both at coordinates (0,0,0), that's why we have to move the camera or the elements.
 camera.position.z = 5;
 
@@ -94,9 +102,9 @@ function animate() {
 
   //////////////////////////////////////////////
   // Moving the camera instead of the cube
-  controls.enableDamping = true
-  controls.autoRotate = true
-  controls.update()
+  // controls.enableDamping = true
+  // controls.autoRotate = true
+  // controls.update()
 
   renderer.render(scene, camera);
 }
