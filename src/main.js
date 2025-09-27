@@ -106,6 +106,11 @@ camera.position.z = 5;
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
+const esphere = new THREE.SphereGeometry()
+const esphereMesh = new THREE.Mesh(esphere, material)
+esphereMesh.position.set(-2, 1, 1)
+esphere.scale(0.5, 0.5, 0.5)
+scene.add(esphereMesh)
 
 //////////////////////////////////////////////
 // Adding a clock in order to capture the elapsed time from a animation and the next one
@@ -130,12 +135,14 @@ function animate() {
   //Calcs the time between the last frame and the next one
   const currentTime = clock.getElapsedTime()
   const delta = currentTime - previousTime
-
   previousTime = currentTime
 
   cube.rotation.x += 0.01
   cube2.rotation.y += delta * 0.1; //use the delta to animate a cube
   cube3.rotation.z += THREE.MathUtils.degToRad(1);
+
+
+  esphereMesh.position.y = Math.sin(currentTime * 1) - 1.5
 
 
   //////////////////////////////////////////////
