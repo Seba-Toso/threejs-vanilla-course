@@ -18,7 +18,7 @@ const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(
   75, //field of view (fov): is the extent of the scene that is seen on the display at any given moment. The value is in degrees.
   window.innerWidth / window.innerHeight, //aspect-ratio: default= 1 
-  0.1, //near: an object min distance from the camera needed to be rendered (helps to save performance)
+  0.1, //near: an object min distance from the camera needed to be rendered (helps to save performance) min number to render is (camera distance - 0.5)
   1000 //far: an object max distance from the camera needed to be rendered (helps to save performance)
 )
 
@@ -59,6 +59,14 @@ window.addEventListener('resize', () => {
   )
 })
 
+//////////////////////////////////////////////
+// Adding axes helpers
+const axesHelper = new THREE.AxesHelper(2) // the number of the param is the size of the axes
+scene.add(axesHelper)
+//Note that the axes will be moving as the camera is moving in circles. 
+//If the camera is fixed and the cube rotates, the axes will be fixed.
+
+
 
 //////////////////////////////////////////////
 // Adding a cube geometry
@@ -89,6 +97,7 @@ function animate() {
   controls.enableDamping = true
   controls.autoRotate = true
   controls.update()
+
   renderer.render(scene, camera);
 }
 
