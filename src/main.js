@@ -12,7 +12,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 // Creating the basics
 
 //Threejs projects needs at least a SCENE, a CAMERA and a RENDERER 
-const scene = new THREE.Scene()
+let scene = new THREE.Scene()
 
 // There are different cameras in Threejs. Here we'll use Perspective camera
 const camera = new THREE.PerspectiveCamera(
