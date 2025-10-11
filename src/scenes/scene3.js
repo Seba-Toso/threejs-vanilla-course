@@ -1,3 +1,5 @@
+//Here we dive into some matierial properties and add some fog to the scene.
+
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
