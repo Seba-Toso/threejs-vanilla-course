@@ -1,4 +1,4 @@
-//Here we dive into environment reacting materials: 1- Mesh Lambert Material
+//Here we dive into environment reacting materials: 1- Mesh Lambert and Phong Material
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Pane } from 'tweakpane'
